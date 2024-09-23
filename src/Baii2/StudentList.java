@@ -1,4 +1,5 @@
-package Baii5;
+
+package Baii2;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -6,18 +7,14 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class StudentList {
-
     private ArrayList<Student> students = new ArrayList<>();
 
     public StudentList() {
+        this.students = new ArrayList<>();
     }
 
     public ArrayList<Student> getStudents() {
         return students;
-    }
-
-    public void setStudents(ArrayList<Student> students) {
-        this.students = students;
     }
 
     public void addStudent() {
@@ -59,8 +56,9 @@ public class StudentList {
                 } catch (Exception e) {
                     System.out.println("Wrong Format!");
                 }
-
                 students.set(i, updatedStudent);
+                System.out.println("Cap nhat thanh cong!");
+                return;
             }
         }
     }
@@ -73,27 +71,43 @@ public class StudentList {
             if (students.get(i).getId().equals(id)) {
                 students.remove(i);
                 System.out.println("Sinh vien voi ID: " + id + " da bi xoa.");
+                return;
             }
         }
     }
 
     public void displayAllStudents() {
         for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
-            student.displayInfo();
+            students.get(i).displayInfo();
             System.out.println();
         }
     }
 
     public void findTopStudent() {
         Student topStudent = students.get(0);
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
-            if (student.getGPA() > topStudent.getGPA()) {
-                topStudent = student;
+        for (int i = 1; i < students.size(); i++) {
+            if (students.get(i).getGPA() > topStudent.getGPA()) {
+                topStudent = students.get(i);
             }
         }
         System.out.println("Sinh vien co GPA cao nhat la:");
         topStudent.displayInfo();
+    }
+
+    public void findScholarshipStudents() {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getSchoolarship()) {
+                students.get(i).displayInfo();
+            }
+        }
+    }
+
+    public double calculateTuitionOfAllStudents() {
+        double totalTuition = 0;
+        
+        for (int i = 0; i < students.size(); i++) {
+            totalTuition += students.get(i).getTuition();
+        }
+        return totalTuition;
     }
 }

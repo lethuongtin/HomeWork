@@ -1,10 +1,9 @@
 
-package Baii6;
+package Baii1;
 
 import java.util.Date;
 
-public abstract class Person implements IPerson {
-
+public abstract class Person implements IPerson{
     String id;
     String name;
     Date dateOfBirth;
@@ -41,6 +40,5 @@ public abstract class Person implements IPerson {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
     public abstract void displayInfo();
 }
